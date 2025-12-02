@@ -9,6 +9,26 @@ if ($conn) {
     $query_total = "SELECT * FROM animal";
     $total = mysqli_query($conn, $query_total);
     $total = mysqli_num_rows($total);
+
+
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        $anim_name = $_POST["anim_name"];
+        $anim_habit = $_POST["anim_habit"];
+        $anim_regim = $_POST["anim_regim"];
+        $anim_img = $_POST["anim_img"];
+
+        $query_add = "INSERT INTO animal(name_anim,habitat_id,type_alimentaire,anim_image) 
+                       VALUES('$anim_name','$anim_habit','$anim_regim','$anim_img')";
+
+        if(!mysqli_query($conn,$query_add)){
+            echo "problem";
+        }
+        else{
+              echo "done";
+            header('location index.php');
+            exit;
+        }
+    }
 }
 
 
