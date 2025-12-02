@@ -24,8 +24,7 @@ if ($conn) {
             echo "problem";
         }
         else{
-              echo "done";
-            header('location index.php');
+            header("Location: ../index.php");
             exit;
         }
     }
