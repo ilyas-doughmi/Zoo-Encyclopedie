@@ -533,9 +533,9 @@
                                 <label class="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-2">Régime</label>
                                 <div class="relative">
                                     <select name="anim_regim" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 font-medium appearance-none outline-none focus:ring-2 focus:ring-zoo-500">
-                                        <option value="carnivore">Carnivore</option>
-                                        <option value="herbivore">Herbivore</option>
-                                        <option value="omnivore">Omnivore</option>
+                                        <option value="Carnivore">Carnivore</option>
+                                        <option value="Herbivore">Herbivore</option>
+                                        <option value="Omnivore">Omnivore</option>
                                     </select>
                                     <i data-lucide="chevron-down" class="absolute right-3 top-3.5 w-4 h-4 text-slate-400 pointer-events-none"></i>
                                 </div>
