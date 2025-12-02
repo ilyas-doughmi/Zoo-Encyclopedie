@@ -32,4 +32,19 @@ if ($conn) {
 }
 
 
+// delete Animal
+
+if(isset($_GET["id"])){
+    $id = $_GET["id"];
+    $delete = mysqli_query($conn,"DELETE FROM animal WHERE id=".$id);
+
+    if(!$delete){
+        echo "problem";
+    }
+    else{
+        header("location: ../index.php?isDeleted = success"); 
+    }
+}
+
+
 ?>
