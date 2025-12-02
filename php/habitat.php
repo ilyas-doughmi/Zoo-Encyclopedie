@@ -1,8 +1,8 @@
 <?php 
     include("connexion.php");
 
-
-    // total habitat
+    if($conn){
+            // total habitat
     $query = "SELECT * FROM habitat";
 
     $total_hab = mysqli_query($conn,$query);
@@ -11,4 +11,6 @@
     // habitats names
 
     $habitats_names = mysqli_query($conn,"SELECT name_hab from habitat");
+    }
+
 ?>
