@@ -325,9 +325,12 @@
                                 <button class="w-9 h-9 bg-white text-slate-700 rounded-full flex items-center justify-center hover:bg-zoo-500 hover:text-white transition-colors shadow-lg transform hover:scale-110">
                                     <i data-lucide="pencil" class="w-4 h-4"></i>
                                 </button>
-                                <button class="w-9 h-9 bg-white text-slate-700 rounded-full flex items-center justify-center hover:bg-rose-500 hover:text-white transition-colors shadow-lg transform hover:scale-110">
+                                <a href="http://localhost/zoo-Encyclopedie/php/animals.php?id=<?= $row["id"] ?>">
+                                <button  class="w-9 h-9 bg-white text-slate-700 rounded-full flex items-center justify-center hover:bg-rose-500 hover:text-white transition-colors shadow-lg transform hover:scale-110">
                                     <i data-lucide="trash-2" class="w-4 h-4"></i>
                                 </button>
+
+                                </a>
                             </div>
                         </div>
 
@@ -533,7 +536,6 @@
         function filterAnimals() {
             const val = document.getElementById('filter-habitat').value;
             const filtered = val === 'all' ? animalsData : animalsData.filter(a => a.habitat === val);
-            renderAnimals(filtered);
         }
 
         // Modal Logic with Animation
@@ -559,8 +561,6 @@
             }, 300);
         }
 
-        // Initialize
-        renderAnimals(animalsData);
     </script>
 </body>
 </html>
