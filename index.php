@@ -519,9 +519,12 @@
                                 <label class="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-2">Habitat</label>
                                 <div class="relative">
                                     <select class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 font-medium appearance-none outline-none focus:ring-2 focus:ring-zoo-500">
-                                        <option>Savane</option>
-                                        <option>Jungle</option>
-                                        <option>Océan</option>
+                                        <?php 
+                                            while($row = mysqli_fetch_assoc($habitats_names)){ ?> 
+                                                <option name="<?= $row["name_hab"] ?>" id=""><?= $row["name_hab"] ?></option>
+                                            <?php } ?>
+                                        
+                                        ?>
                                     </select>
                                     <i data-lucide="chevron-down" class="absolute right-3 top-3.5 w-4 h-4 text-slate-400 pointer-events-none"></i>
                                 </div>
@@ -530,9 +533,9 @@
                                 <label class="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-2">Régime</label>
                                 <div class="relative">
                                     <select class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 font-medium appearance-none outline-none focus:ring-2 focus:ring-zoo-500">
-                                        <option>Carnivore</option>
-                                        <option>Herbivore</option>
-                                        <option>Omnivore</option>
+                                        <option value="carnivore">Carnivore</option>
+                                        <option value="herbivore">Herbivore</option>
+                                        <option value="omnivore">Omnivore</option>
                                     </select>
                                     <i data-lucide="chevron-down" class="absolute right-3 top-3.5 w-4 h-4 text-slate-400 pointer-events-none"></i>
                                 </div>
