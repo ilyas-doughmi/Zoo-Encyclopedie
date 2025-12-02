@@ -40,3 +40,19 @@ VALUES
 ('Gazelle', 'Herbivore', 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Chinkara_-_Shreeram_M_V_-_Bikaner.jpg/1200px-Chinkara_-_Shreeram_M_V_-_Bikaner.jpg', 14);
 
 
+-- modifie an animal
+UPDATE animal
+SET name_anim = 'Lion',
+    type_alimentaire = 'Carnivore',
+    anim_image = 'nouvelle_image.jpg',
+    habitat_id = 15
+WHERE id = 1;
+
+-- delete an animal
+DELETE FROM animal
+WHERE id = 3;
+
+
+-- see all data
+SELECT * FROM animal;
+
