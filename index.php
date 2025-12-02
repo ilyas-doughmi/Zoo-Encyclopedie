@@ -1,5 +1,6 @@
 <?php
     include("php/connexion.php");
+    include("php/animals.php");
 ?>
 
 <!DOCTYPE html>
@@ -192,10 +193,8 @@
                                 </div>
                                 <div>
                                     <p class="text-slate-500 font-medium text-sm">Total Animaux</p>
-                                    <h3 class="text-4xl font-display font-bold text-slate-800 mt-1">12</h3>
-                                    <div class="flex items-center gap-2 mt-2 text-xs font-medium text-zoo-600">
-                                        <span class="bg-zoo-50 px-2 py-1 rounded-md">+2 cette semaine</span>
-                                    </div>
+                                    <h3 class="text-4xl font-display font-bold text-slate-800 mt-1"><?= $total ?></h3>
+    
                                 </div>
                             </div>
                         </div>
