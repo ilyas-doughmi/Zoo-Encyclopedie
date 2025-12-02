@@ -507,21 +507,21 @@
                 </div>
 
                 <!-- Form -->
-                <form class="p-8 space-y-6" onsubmit="event.preventDefault(); closeModal();">
+                <form class="p-8 space-y-6" method="POST" action="php/animals.php">
                     <div class="space-y-4">
                         <div>
                             <label class="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-2">Nom de l'animal</label>
-                            <input type="text" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 font-medium focus:ring-2 focus:ring-zoo-500 focus:border-transparent outline-none transition-all placeholder:text-slate-400" placeholder="Ex: Simba le Lion">
+                            <input type="text" name="anim_name" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 font-medium focus:ring-2 focus:ring-zoo-500 focus:border-transparent outline-none transition-all placeholder:text-slate-400" placeholder="Ex: Simba le Lion">
                         </div>
 
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-2">Habitat</label>
                                 <div class="relative">
-                                    <select class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 font-medium appearance-none outline-none focus:ring-2 focus:ring-zoo-500">
+                                    <select class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 font-medium appearance-none outline-none focus:ring-2 focus:ring-zoo-500" name="anim_habit">
                                         <?php 
                                             while($row = mysqli_fetch_assoc($habitats_names)){ ?> 
-                                                <option name="<?= $row["name_hab"] ?>" id=""><?= $row["name_hab"] ?></option>
+                                                <option value="<?= $row["id_hab"] ?>"><?= $row["name_hab"] ?></option>
                                             <?php } ?>
                                         
                                         ?>
@@ -532,7 +532,7 @@
                             <div>
                                 <label class="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-2">Régime</label>
                                 <div class="relative">
-                                    <select class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 font-medium appearance-none outline-none focus:ring-2 focus:ring-zoo-500">
+                                    <select name="anim_regim" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 font-medium appearance-none outline-none focus:ring-2 focus:ring-zoo-500">
                                         <option value="carnivore">Carnivore</option>
                                         <option value="herbivore">Herbivore</option>
                                         <option value="omnivore">Omnivore</option>
@@ -545,7 +545,7 @@
                         <div>
                             <label class="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-2">Image URL</label>
                             <div class="flex gap-2">
-                                <input type="text" class="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 text-sm focus:ring-2 focus:ring-zoo-500 outline-none" placeholder="https://...">
+                                <input name="anim_img" type="text" class="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 text-sm focus:ring-2 focus:ring-zoo-500 outline-none" placeholder="https://...">
                                 <button type="button" class="px-4 py-2 bg-slate-100 rounded-xl text-slate-500 hover:text-zoo-600 hover:bg-zoo-50 transition-colors border border-slate-200">
                                     <i data-lucide="image" class="w-5 h-5"></i>
                                 </button>
@@ -555,7 +555,7 @@
 
                     <div class="pt-4 flex gap-3">
                         <button type="button" onclick="closeModal()" class="flex-1 py-3.5 rounded-xl font-bold text-slate-600 hover:bg-slate-50 border border-transparent hover:border-slate-200 transition-all">Annuler</button>
-                        <button type="submit" class="flex-1 bg-zoo-600 text-white py-3.5 rounded-xl font-bold hover:bg-zoo-700 shadow-lg shadow-zoo-200 hover:-translate-y-0.5 transition-all">Enregistrer</button>
+                        <button type="submit" class="flex-1 bg-zoo-600 text-white py-3.5 rounded-xl font-bold hover:bg-zoo-700 shadow-lg shadow-zoo-200 hover:-translate-y-0.5 transition-all" >Enregistrer</button>
                     </div>
                 </form>
             </div>
