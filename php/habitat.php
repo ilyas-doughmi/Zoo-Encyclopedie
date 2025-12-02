@@ -10,7 +10,7 @@
 
     // habitats names
 
-    $habitats_names = mysqli_query($conn,"SELECT name_hab from habitat");
+    $habitats_names = mysqli_query($conn,"SELECT * from habitat");
     }
 
 ?>
