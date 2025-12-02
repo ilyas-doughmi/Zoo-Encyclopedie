@@ -120,19 +120,7 @@
     
         </nav>
 
-        <!-- User Profile -->
-        <div class="p-4 border-t border-slate-50">
-            <div class="flex items-center gap-3 p-3 rounded-2xl bg-slate-50 border border-slate-100">
-                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-white font-bold shadow-md">
-                    AC
-                </div>
-                <div class="flex-1 min-w-0">
-                    <p class="text-sm font-bold text-slate-800 truncate">Achraf C.</p>
-                    <p class="text-xs text-slate-500 truncate">Admin Crèche</p>
-                </div>
-                <button class="text-slate-400 hover:text-slate-600"><i data-lucide="chevron-right" class="w-4 h-4"></i></button>
-            </div>
-        </div>
+
     </aside>
 
     <!-- MAIN CONTENT WRAPPER -->
@@ -319,9 +307,45 @@
                         </div>
                     </div>
 
+
                     <!-- Animal Grid -->
                     <div id="animal-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                        <!-- JS GENERATED -->
+                            <?php while($row = mysqli_fetch_assoc($query_for_all)){ ?> 
+                                <div id="<?= $row["id"] ?>" class="bg-white rounded-3xl p-3 shadow-sm border border-slate-100 hover:border-zoo-200 transition-all duration-300 group fade-in hover:-translate-y-1" style="animation-delay: ${index * 50}ms">
+                        <div class="relative h-48 rounded-[1.2rem] overflow-hidden mb-3">
+                            <img src="<?= $row["anim_image"] ?>" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="${animal.name}">
+                            
+                            <div class="absolute top-2 left-2">
+                                <span class="bg-green-300 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wide bg-opacity-90">
+                                    <?= $row["type_alimentaire"] ?>
+                                </span>
+                            </div>
+
+                            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2 backdrop-blur-[2px]">
+                                <button class="w-9 h-9 bg-white text-slate-700 rounded-full flex items-center justify-center hover:bg-zoo-500 hover:text-white transition-colors shadow-lg transform hover:scale-110">
+                                    <i data-lucide="pencil" class="w-4 h-4"></i>
+                                </button>
+                                <button class="w-9 h-9 bg-white text-slate-700 rounded-full flex items-center justify-center hover:bg-rose-500 hover:text-white transition-colors shadow-lg transform hover:scale-110">
+                                    <i data-lucide="trash-2" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="px-2 pb-2">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-display font-bold text-lg text-slate-800"><?= $row["name_anim"] ?></h3>
+                                <div class="${ds.bg} ${ds.text} p-1.5 rounded-lg">
+                                    <i data-lucide="${ds.icon}" class="w-4 h-4"></i>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center text-xs text-slate-400 font-medium border-t border-slate-50 pt-2 mt-2">
+                                <span></span>
+                                <span class="group-hover:text-zoo-600 transition-colors">Voir fiche &rarr;</span>
+                            </div>
+                        </div>
+                    </div>
+
+                            <?php } ?>
                     </div>
                 </div>
 
@@ -387,98 +411,6 @@
                             </div>
                             <span class="font-bold text-slate-400 group-hover:text-zoo-700">Créer une Zone</span>
                         </button>
-                    </div>
-                </div>
-
-                <!-- NEW DATABASE SCHEMA VIEW -->
-                <div id="view-schema" class="space-y-8 hidden fade-in">
-                    <div class="flex justify-between items-end">
-                        <div>
-                            <h2 class="text-3xl font-display font-bold text-slate-800">Modélisation BDD</h2>
-                            <p class="text-slate-500 mt-1">Schéma relationnel (ERD) du projet.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-white p-10 rounded-[2rem] border border-slate-200 shadow-sm relative overflow-hidden min-h-[500px] flex items-center justify-center bg-slate-50">
-                        <div class="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:20px_20px] opacity-40"></div>
-                        
-                        <!-- ERD CONTAINER -->
-                        <div class="flex flex-col md:flex-row gap-16 items-center relative z-10">
-                            
-                            <!-- TABLE: HABITAT -->
-                            <div class="w-72 bg-white rounded-xl shadow-xl border border-slate-200 overflow-hidden ring-4 ring-slate-100">
-                                <div class="bg-gradient-to-r from-blue-600 to-blue-500 p-3 flex justify-between items-center text-white">
-                                    <span class="font-mono font-bold">Habitat</span>
-                                    <i data-lucide="table-2" class="w-4 h-4 opacity-70"></i>
-                                </div>
-                                <div class="divide-y divide-slate-100 text-sm">
-                                    <div class="p-3 flex justify-between items-center bg-blue-50/50">
-                                        <div class="flex items-center gap-2">
-                                            <i data-lucide="key" class="w-3 h-3 text-amber-500"></i>
-                                            <span class="font-bold text-slate-700">id_hab</span>
-                                        </div>
-                                        <span class="font-mono text-xs text-blue-600 font-bold">INT(11)</span>
-                                    </div>
-                                    <div class="p-3 flex justify-between items-center">
-                                        <span class="text-slate-600 pl-5">nom_hab</span>
-                                        <span class="font-mono text-xs text-slate-400">VARCHAR(50)</span>
-                                    </div>
-                                    <div class="p-3 flex justify-between items-center">
-                                        <span class="text-slate-600 pl-5">description_hab</span>
-                                        <span class="font-mono text-xs text-slate-400">TEXT</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- RELATIONSHIP ARROW (Visual) -->
-                            <div class="hidden md:flex flex-col items-center gap-1">
-                                <span class="text-xs font-bold text-slate-400 uppercase tracking-widest bg-white px-2 py-1 rounded shadow-sm border border-slate-100">1:N</span>
-                                <div class="h-0.5 w-16 bg-slate-300 relative">
-                                    <div class="absolute -right-1 -top-1 w-2 h-2 border-r-2 border-t-2 border-slate-300 transform rotate-45"></div>
-                                    <div class="absolute -left-1 -top-1.5 text-slate-300 font-serif">||</div>
-                                    <div class="absolute -right-3 -top-1.5 text-slate-300 font-serif text-[10px] transform rotate-90 flex gap-0.5">
-                                        <span>/</span><span>\</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- TABLE: ANIMAL -->
-                            <div class="w-72 bg-white rounded-xl shadow-xl border border-slate-200 overflow-hidden ring-4 ring-slate-100">
-                                <div class="bg-gradient-to-r from-zoo-600 to-zoo-500 p-3 flex justify-between items-center text-white">
-                                    <span class="font-mono font-bold">Animal</span>
-                                    <i data-lucide="table-2" class="w-4 h-4 opacity-70"></i>
-                                </div>
-                                <div class="divide-y divide-slate-100 text-sm">
-                                    <div class="p-3 flex justify-between items-center bg-zoo-50/50">
-                                        <div class="flex items-center gap-2">
-                                            <i data-lucide="key" class="w-3 h-3 text-amber-500"></i>
-                                            <span class="font-bold text-slate-700">id</span>
-                                        </div>
-                                        <span class="font-mono text-xs text-zoo-600 font-bold">INT(11)</span>
-                                    </div>
-                                    <div class="p-3 flex justify-between items-center">
-                                        <span class="text-slate-600 pl-5">nom</span>
-                                        <span class="font-mono text-xs text-slate-400">VARCHAR(50)</span>
-                                    </div>
-                                    <div class="p-3 flex justify-between items-center">
-                                        <span class="text-slate-600 pl-5">type_alimentaire</span>
-                                        <span class="font-mono text-xs text-slate-400">VARCHAR(50)</span>
-                                    </div>
-                                    <div class="p-3 flex justify-between items-center">
-                                        <span class="text-slate-600 pl-5">image</span>
-                                        <span class="font-mono text-xs text-slate-400">VARCHAR(255)</span>
-                                    </div>
-                                    <div class="p-3 flex justify-between items-center bg-amber-50/30">
-                                        <div class="flex items-center gap-2">
-                                            <i data-lucide="link" class="w-3 h-3 text-slate-400"></i>
-                                            <span class="text-slate-700 italic">habitat_id</span>
-                                        </div>
-                                        <span class="font-mono text-xs text-blue-600 font-bold">INT(11)</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
                     </div>
                 </div>
 
@@ -567,78 +499,6 @@
         // Init Icons
         lucide.createIcons();
 
-        // Data
-        const animalsData = [
-            { id: 1, name: "Lion", habitat: "Savane", diet: "Carnivore", img: "https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&q=80&w=600" },
-            { id: 2, name: "Zèbre", habitat: "Savane", diet: "Herbivore", img: "https://images.unsplash.com/photo-1509869178877-152bc4746687?auto=format&fit=crop&q=80&w=600" },
-            { id: 3, name: "Perroquet", habitat: "Jungle", diet: "Omnivore", img: "https://images.unsplash.com/photo-1552728089-57bdde30ebd1?auto=format&fit=crop&q=80&w=600" },
-            { id: 4, name: "Requin", habitat: "Océan", diet: "Carnivore", img: "https://images.unsplash.com/photo-1560275619-4662e36fa65c?auto=format&fit=crop&q=80&w=600" },
-            { id: 5, name: "Girafe", habitat: "Savane", diet: "Herbivore", img: "https://images.unsplash.com/photo-1547721064-da6cfb341d50?auto=format&fit=crop&q=80&w=600" },
-            { id: 6, name: "Singe", habitat: "Jungle", diet: "Omnivore", img: "https://images.unsplash.com/photo-1540573133985-87b6da6d54a9?auto=format&fit=crop&q=80&w=600" },
-            { id: 7, name: "Éléphant", habitat: "Savane", diet: "Herbivore", img: "https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?auto=format&fit=crop&q=80&w=600" },
-            { id: 8, name: "Tortue", habitat: "Océan", diet: "Herbivore", img: "https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?auto=format&fit=crop&q=80&w=600" }
-        ];
-
-        // Render Cards
-        function renderAnimals(data) {
-            const grid = document.getElementById('animal-grid');
-            grid.innerHTML = '';
-
-            data.forEach((animal, index) => {
-                // Styles configs
-                const dietStyles = {
-                    Carnivore: { bg: 'bg-rose-50', text: 'text-rose-600', icon: 'beef' },
-                    Herbivore: { bg: 'bg-emerald-50', text: 'text-emerald-600', icon: 'leaf' },
-                    Omnivore: { bg: 'bg-purple-50', text: 'text-purple-600', icon: 'carrot' }
-                };
-                const ds = dietStyles[animal.diet];
-
-                const habStyles = {
-                    Savane: { bg: 'bg-amber-100', text: 'text-amber-700' },
-                    Jungle: { bg: 'bg-zoo-100', text: 'text-zoo-700' },
-                    Océan: { bg: 'bg-blue-100', text: 'text-blue-700' }
-                };
-                const hs = habStyles[animal.habitat];
-
-                const cardHTML = `
-                    <div class="bg-white rounded-3xl p-3 shadow-sm border border-slate-100 hover:border-zoo-200 transition-all duration-300 group fade-in hover:-translate-y-1" style="animation-delay: ${index * 50}ms">
-                        <div class="relative h-48 rounded-[1.2rem] overflow-hidden mb-3">
-                            <img src="${animal.img}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="${animal.name}">
-                            
-                            <div class="absolute top-2 left-2">
-                                <span class="${hs.bg} ${hs.text} text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wide backdrop-blur-md bg-opacity-90">
-                                    ${animal.habitat}
-                                </span>
-                            </div>
-
-                            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2 backdrop-blur-[2px]">
-                                <button class="w-9 h-9 bg-white text-slate-700 rounded-full flex items-center justify-center hover:bg-zoo-500 hover:text-white transition-colors shadow-lg transform hover:scale-110">
-                                    <i data-lucide="pencil" class="w-4 h-4"></i>
-                                </button>
-                                <button class="w-9 h-9 bg-white text-slate-700 rounded-full flex items-center justify-center hover:bg-rose-500 hover:text-white transition-colors shadow-lg transform hover:scale-110">
-                                    <i data-lucide="trash-2" class="w-4 h-4"></i>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="px-2 pb-2">
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="font-display font-bold text-lg text-slate-800">${animal.name}</h3>
-                                <div class="${ds.bg} ${ds.text} p-1.5 rounded-lg">
-                                    <i data-lucide="${ds.icon}" class="w-4 h-4"></i>
-                                </div>
-                            </div>
-                            <div class="flex justify-between items-center text-xs text-slate-400 font-medium border-t border-slate-50 pt-2 mt-2">
-                                <span>ID: #${String(animal.id).padStart(3, '0')}</span>
-                                <span class="group-hover:text-zoo-600 transition-colors">Voir fiche &rarr;</span>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                grid.insertAdjacentHTML('beforeend', cardHTML);
-            });
-            lucide.createIcons();
-        }
 
         // Navigation Logic
         function switchTab(tab) {
