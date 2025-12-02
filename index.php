@@ -1,6 +1,7 @@
 <?php
     include("php/connexion.php");
     include("php/animals.php");
+    include("php/habitat.php")
 ?>
 
 <!DOCTYPE html>
@@ -210,10 +211,7 @@
                                 </div>
                                 <div>
                                     <p class="text-slate-500 font-medium text-sm">Habitats Actifs</p>
-                                    <h3 class="text-4xl font-display font-bold text-slate-800 mt-1">4</h3>
-                                    <div class="flex items-center gap-2 mt-2 text-xs font-medium text-slate-400">
-                                        <span>Capacité: 85%</span>
-                                    </div>
+                                    <h3 class="text-4xl font-display font-bold text-slate-800 mt-1"><?= $total_hab ?></h3>
                                 </div>
                             </div>
                         </div>
