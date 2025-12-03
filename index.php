@@ -453,7 +453,7 @@
                             <div>
                                 <label class="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-2">Habitat</label>
                                 <div class="relative">
-                                    <select class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 font-medium appearance-none outline-none focus:ring-2 focus:ring-zoo-500" name="anim_habit">
+                                    <select  class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 font-medium appearance-none outline-none focus:ring-2 focus:ring-zoo-500" name="anim_habit">
                                         <?php 
                                             foreach($habitat as $h){ ?>
                                                 <option value="<?= $h["id_hab"] ?>"><?= $h["name_hab"] ?></option>
@@ -516,19 +516,20 @@
                 </div>
 
                 <!-- Form -->
-                <form class="p-8 space-y-6" onsubmit="event.preventDefault(); closeEditModal();">
+                <form class="p-8 space-y-6" method="GET" action="php/animals.php">
                     <input type="hidden" id="edit-id">
                     <div class="space-y-4">
+                        <input type="text" class="opacity-0" name="id_edit" id="edit_id">
                         <div>
                             <label class="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-2">Nom de l'animal</label>
-                            <input id="anim_nm_edit" type="text" id="edit-name" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 font-medium focus:ring-2 focus:ring-zoo-500 focus:border-transparent outline-none transition-all placeholder:text-slate-400">
+                            <input id="anim_nm_edit" type="text" id="edit-name" name="new_name" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 font-medium focus:ring-2 focus:ring-zoo-500 focus:border-transparent outline-none transition-all placeholder:text-slate-400">
                         </div>
 
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-2">Habitat</label>
                                 <div class="relative">
-                                    <select id="edit-habitat" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 font-medium appearance-none outline-none focus:ring-2 focus:ring-zoo-500">
+                                    <select id="edit-habitat" name="new_habit" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 font-medium appearance-none outline-none focus:ring-2 focus:ring-zoo-500">
                                      <?php 
                                             foreach($habitat as $h){ ?>
                                                 <option value="<?= $h["id_hab"] ?>"><?= $h["name_hab"] ?></option>
@@ -540,10 +541,10 @@
                             <div>
                                 <label class="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-2">Régime</label>
                                 <div class="relative">
-                                    <select id="edit-diet" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 font-medium appearance-none outline-none focus:ring-2 focus:ring-zoo-500">
-                                        <option>Carnivore</option>
-                                        <option>Herbivore</option>
-                                        <option>Omnivore</option>
+                                    <select id="edit_diet" name="new_diet" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 font-medium appearance-none outline-none focus:ring-2 focus:ring-zoo-500">
+                                        <option value="Carnivore">Carnivore</option>
+                                        <option value="Herbivore">Herbivore</option>
+                                        <option value="Omnivore">Omnivore</option>
                                     </select>
                                     <i data-lucide="chevron-down" class="absolute right-3 top-3.5 w-4 h-4 text-slate-400 pointer-events-none"></i>
                                 </div>
@@ -553,7 +554,7 @@
                         <div>
                             <label class="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-2">Image URL</label>
                             <div class="flex gap-2">
-                                <input id="image_anm_edit" type="text" id="edit-img" class="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 text-sm focus:ring-2 focus:ring-zoo-500 outline-none">
+                                <input id="image_anm_edit" type="text" id="edit-img" name="new_img" class="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 text-sm focus:ring-2 focus:ring-zoo-500 outline-none">
                                 <button type="button" class="px-4 py-2 bg-slate-100 rounded-xl text-slate-500 hover:text-zoo-600 hover:bg-zoo-50 transition-colors border border-slate-200">
                                     <i data-lucide="image" class="w-5 h-5"></i>
                                 </button>
@@ -642,6 +643,9 @@
         // edit modal info
         const anim_nm_edit = document.getElementById("anim_nm_edit");
         const image_anm_edit = document.getElementById("image_anm_edit");
+        const edit_habitat = document.getElementById("edit-habitat");
+        const edit_diet = document.getElementById("edit_diet");
+        const edit_id = document.getElementById("edit_id");
         function openEditModal(id){
             // showing modal
               editmodal.classList.remove('hidden');
@@ -659,6 +663,10 @@
                     console.log("get : ",data);
                     anim_nm_edit.value = data.name_anim;
                     image_anm_edit.value = data.anim_image;
+                    edit_habitat.value = data.habitat_id;
+                    edit_diet.value = data.type_alimentaire;
+                    edit_id.value = data.id;
+
                 })
                 .catch(error => console.log("eror"));
 
