@@ -65,4 +65,11 @@ function data_id($id){
 }
 
 
+if(isset($_GET["data"])){
+    $id = $_GET['data'];
+    echo data_id($id);
+    exit;
+}
+
+
 ?>
