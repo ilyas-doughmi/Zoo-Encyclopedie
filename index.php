@@ -455,11 +455,9 @@
                                 <div class="relative">
                                     <select class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 font-medium appearance-none outline-none focus:ring-2 focus:ring-zoo-500" name="anim_habit">
                                         <?php 
-                                            while($row = mysqli_fetch_assoc($habitats_names)){ ?> 
-                                                <option value="<?= $row["id_hab"] ?>"><?= $row["name_hab"] ?></option>
+                                            foreach($habitat as $h){ ?>
+                                                <option value="<?= $h["id_hab"] ?>"><?= $h["name_hab"] ?></option>
                                             <?php } ?>
-                                        
-                                        ?>
                                     </select>
                                     <i data-lucide="chevron-down" class="absolute right-3 top-3.5 w-4 h-4 text-slate-400 pointer-events-none"></i>
                                 </div>
@@ -523,7 +521,7 @@
                     <div class="space-y-4">
                         <div>
                             <label class="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-2">Nom de l'animal</label>
-                            <input type="text" id="edit-name" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 font-medium focus:ring-2 focus:ring-zoo-500 focus:border-transparent outline-none transition-all placeholder:text-slate-400">
+                            <input id="anim_nm_edit" type="text" id="edit-name" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 font-medium focus:ring-2 focus:ring-zoo-500 focus:border-transparent outline-none transition-all placeholder:text-slate-400">
                         </div>
 
                         <div class="grid grid-cols-2 gap-4">
@@ -531,9 +529,10 @@
                                 <label class="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-2">Habitat</label>
                                 <div class="relative">
                                     <select id="edit-habitat" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 font-medium appearance-none outline-none focus:ring-2 focus:ring-zoo-500">
-                                        <option>Savane</option>
-                                        <option>Jungle</option>
-                                        <option>Océan</option>
+                                     <?php 
+                                            foreach($habitat as $h){ ?>
+                                                <option value="<?= $h["id_hab"] ?>"><?= $h["name_hab"] ?></option>
+                                            <?php } ?>
                                     </select>
                                     <i data-lucide="chevron-down" class="absolute right-3 top-3.5 w-4 h-4 text-slate-400 pointer-events-none"></i>
                                 </div>
@@ -554,7 +553,7 @@
                         <div>
                             <label class="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-2">Image URL</label>
                             <div class="flex gap-2">
-                                <input type="text" id="edit-img" class="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 text-sm focus:ring-2 focus:ring-zoo-500 outline-none">
+                                <input id="image_anm_edit" type="text" id="edit-img" class="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 text-sm focus:ring-2 focus:ring-zoo-500 outline-none">
                                 <button type="button" class="px-4 py-2 bg-slate-100 rounded-xl text-slate-500 hover:text-zoo-600 hover:bg-zoo-50 transition-colors border border-slate-200">
                                     <i data-lucide="image" class="w-5 h-5"></i>
                                 </button>
@@ -638,8 +637,11 @@
 
         // edit modal
        const edit_modal_backdrop = document.getElementById("edit-modal-backdrop");
-            const editmodalpanel = document.getElementById("edit-modal-panel");
-            const editmodal = document.getElementById("edit-modal");
+        const editmodalpanel = document.getElementById("edit-modal-panel");
+        const editmodal = document.getElementById("edit-modal");
+        // edit modal info
+        const anim_nm_edit = document.getElementById("anim_nm_edit");
+        const image_anm_edit = document.getElementById("image_anm_edit");
         function openEditModal(id){
             // showing modal
               editmodal.classList.remove('hidden');
@@ -655,8 +657,14 @@
                 .then(response => response.json())
                 .then (data=> {
                     console.log("get : ",data);
+                    anim_nm_edit.value = data.name_anim;
+                    image_anm_edit.value = data.anim_image;
                 })
                 .catch(error => console.log("eror"));
+
+
+
+
 
 
         }
