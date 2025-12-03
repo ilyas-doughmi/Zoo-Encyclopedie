@@ -641,13 +641,23 @@
             const editmodalpanel = document.getElementById("edit-modal-panel");
             const editmodal = document.getElementById("edit-modal");
         function openEditModal(id){
-     
+            // showing modal
               editmodal.classList.remove('hidden');
             setTimeout(() => {
                 edit_modal_backdrop.classList.remove('opacity-0');
                 editmodalpanel.classList.remove('scale-95', 'opacity-0');
                 editmodalpanel.classList.add('scale-100', 'opacity-100');
             }, 10);
+
+            // getting data and show it in input
+
+            fetch(`php/animals.php?data=${id}`)
+                .then(response => response.text())
+                .then (data=> {
+                    console.log("get : ",data);
+                })
+                .catch(error => console.log("eror"));
+
 
         }
 
