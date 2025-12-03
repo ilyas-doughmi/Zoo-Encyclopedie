@@ -4,6 +4,7 @@
 include("connexion.php");
 
 
+
 // total animals
 if ($conn) {
     $query_total = "SELECT * FROM animal";
@@ -43,6 +44,23 @@ if(isset($_GET["id"])){
     }
     else{
         header("location: ../index.php?isDeleted = success"); 
+    }
+}
+
+
+// query with id 
+function data_id($id){
+    global $conn;
+
+    $data_query = "SELECT * FROM animal WHERE id = " .$id.";";
+    $data_query = mysqli_query($conn,$data_query);
+
+    if($data_query){
+        $data = mysqli_fetch_assoc($data_query);
+        echo $data["name_anim"];
+    }
+    else{
+        echo "no data found";
     }
 }
 
