@@ -57,7 +57,9 @@ function data_id($id){
 
     if($data_query){
         $data = mysqli_fetch_assoc($data_query);
-        echo $data["name_anim"];
+
+       echo json_encode($data);
+        
     }
     else{
         echo "no data found";
@@ -67,7 +69,7 @@ function data_id($id){
 
 if(isset($_GET["data"])){
     $id = $_GET['data'];
-    echo data_id($id);
+    data_id($id);
     exit;
 }
 
