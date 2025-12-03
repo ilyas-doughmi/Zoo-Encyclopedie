@@ -652,7 +652,7 @@
             // getting data and show it in input
 
             fetch(`php/animals.php?data=${id}`)
-                .then(response => response.text())
+                .then(response => response.json())
                 .then (data=> {
                     console.log("get : ",data);
                 })
