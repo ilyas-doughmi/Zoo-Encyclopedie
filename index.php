@@ -1,7 +1,7 @@
 <?php
     include("php/connexion.php");
     include("php/animals.php");
-    include("php/habitat.php")
+    include("php/habitat.php");
 ?>
 
 <!DOCTYPE html>
@@ -322,7 +322,7 @@
                             </div>
 
                             <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2 backdrop-blur-[2px]">
-                                <button class="w-9 h-9 bg-white text-slate-700 rounded-full flex items-center justify-center hover:bg-zoo-500 hover:text-white transition-colors shadow-lg transform hover:scale-110">
+                                <button  onclick="openEditModal(<?= $row["id"] ?>)" class="w-9 h-9 bg-white text-slate-700 rounded-full flex items-center justify-center hover:bg-zoo-500 hover:text-white transition-colors shadow-lg transform hover:scale-110">
                                     <i data-lucide="pencil" class="w-4 h-4"></i>
                                 </button>
                                 <a href="http://localhost/zoo-Encyclopedie/php/animals.php?id=<?= $row["id"] ?>">
@@ -497,6 +497,80 @@
         </div>
     </div>
 
+      <!-- MODAL OVERLAY: EDIT -->
+    <div id="edit-modal" class="fixed inset-0 z-50 hidden">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity opacity-0" id="edit-modal-backdrop" onclick="closeEditModal()"></div>
+        
+        <!-- Modal Content -->
+        <div class="absolute inset-0 flex items-center justify-center p-4 pointer-events-none">
+            <div id="edit-modal-panel" class="bg-white w-full max-w-lg rounded-3xl shadow-2xl transform scale-95 opacity-0 transition-all duration-300 pointer-events-auto overflow-hidden">
+                
+                <!-- Modal Header -->
+                <div class="bg-slate-50 px-8 py-6 border-b border-slate-100 flex justify-between items-center">
+                    <div>
+                        <h3 class="text-xl font-display font-bold text-slate-800">Modifier l'Animal</h3>
+                        <p class="text-sm text-slate-500">Mettez à jour les informations.</p>
+                    </div>
+                    <button onclick="closeEditModal()" class="w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-400 hover:text-rose-500 hover:border-rose-200 transition-colors">
+                        <i data-lucide="x" class="w-4 h-4"></i>
+                    </button>
+                </div>
+
+                <!-- Form -->
+                <form class="p-8 space-y-6" onsubmit="event.preventDefault(); closeEditModal();">
+                    <input type="hidden" id="edit-id">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-2">Nom de l'animal</label>
+                            <input type="text" id="edit-name" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 font-medium focus:ring-2 focus:ring-zoo-500 focus:border-transparent outline-none transition-all placeholder:text-slate-400">
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-2">Habitat</label>
+                                <div class="relative">
+                                    <select id="edit-habitat" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 font-medium appearance-none outline-none focus:ring-2 focus:ring-zoo-500">
+                                        <option>Savane</option>
+                                        <option>Jungle</option>
+                                        <option>Océan</option>
+                                    </select>
+                                    <i data-lucide="chevron-down" class="absolute right-3 top-3.5 w-4 h-4 text-slate-400 pointer-events-none"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-2">Régime</label>
+                                <div class="relative">
+                                    <select id="edit-diet" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 font-medium appearance-none outline-none focus:ring-2 focus:ring-zoo-500">
+                                        <option>Carnivore</option>
+                                        <option>Herbivore</option>
+                                        <option>Omnivore</option>
+                                    </select>
+                                    <i data-lucide="chevron-down" class="absolute right-3 top-3.5 w-4 h-4 text-slate-400 pointer-events-none"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-2">Image URL</label>
+                            <div class="flex gap-2">
+                                <input type="text" id="edit-img" class="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 text-sm focus:ring-2 focus:ring-zoo-500 outline-none">
+                                <button type="button" class="px-4 py-2 bg-slate-100 rounded-xl text-slate-500 hover:text-zoo-600 hover:bg-zoo-50 transition-colors border border-slate-200">
+                                    <i data-lucide="image" class="w-5 h-5"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 flex gap-3">
+                        <button type="button" onclick="closeEditModal()" class="flex-1 py-3.5 rounded-xl font-bold text-slate-600 hover:bg-slate-50 border border-transparent hover:border-slate-200 transition-all">Annuler</button>
+                        <button type="submit" class="flex-1 bg-zoo-600 text-white py-3.5 rounded-xl font-bold hover:bg-zoo-700 shadow-lg shadow-zoo-200 hover:-translate-y-0.5 transition-all">Sauvegarder</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- JAVASCRIPT -->
     <script>
         // Init Icons
@@ -559,6 +633,32 @@
             setTimeout(() => {
                 modal.classList.add('hidden');
             }, 300);
+        }
+
+
+        // edit modal
+       const edit_modal_backdrop = document.getElementById("edit-modal-backdrop");
+            const editmodalpanel = document.getElementById("edit-modal-panel");
+            const editmodal = document.getElementById("edit-modal");
+        function openEditModal(id){
+     
+              editmodal.classList.remove('hidden');
+            setTimeout(() => {
+                edit_modal_backdrop.classList.remove('opacity-0');
+                editmodalpanel.classList.remove('scale-95', 'opacity-0');
+                editmodalpanel.classList.add('scale-100', 'opacity-100');
+            }, 10);
+
+        }
+
+
+        function closeEditModal(){
+  editmodal.classList.add('hidden');
+            setTimeout(() => {
+                edit_modal_backdrop.classList.add('opacity-0');
+                editmodalpanel.classList.add('scale-95', 'opacity-0');
+                editmodalpanel.classList.remove('scale-100', 'opacity-100');
+            }, 10);
         }
 
     </script>
