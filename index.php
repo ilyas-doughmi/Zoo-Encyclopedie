@@ -325,8 +325,8 @@
                                 <button  onclick="openEditModal(<?= $row["id"] ?>)" class="w-9 h-9 bg-white text-slate-700 rounded-full flex items-center justify-center hover:bg-zoo-500 hover:text-white transition-colors shadow-lg transform hover:scale-110">
                                     <i data-lucide="pencil" class="w-4 h-4"></i>
                                 </button>
-                                <a href="http://localhost/zoo-Encyclopedie/php/animals.php?id=<?= $row["id"] ?>">
-                                <button  class="w-9 h-9 bg-white text-slate-700 rounded-full flex items-center justify-center hover:bg-rose-500 hover:text-white transition-colors shadow-lg transform hover:scale-110">
+                                <!-- <a href="http://localhost/zoo-Encyclopedie/php/animals.php?id=<?= $row["id"] ?>"> -->
+                                <button  onclick="openDeleteModal(<?= $row["id"] ?>)" class="w-9 h-9 bg-white text-slate-700 rounded-full flex items-center justify-center hover:bg-rose-500 hover:text-white transition-colors shadow-lg transform hover:scale-110">
                                     <i data-lucide="trash-2" class="w-4 h-4"></i>
                                 </button>
 
@@ -343,7 +343,7 @@
                             </div>
                             <div class="flex justify-between items-center text-xs text-slate-400 font-medium border-t border-slate-50 pt-2 mt-2">
                                 <span></span>
-                                <span class="group-hover:text-zoo-600 transition-colors">Voir fiche &rarr;</span>
+                                <span class="group-hover:text-zoo-600 transition-colors"><?= $row["habitat_id"] ?></span>
                             </div>
                         </div>
                     </div>
@@ -570,6 +570,37 @@
             </div>
         </div>
     </div>
+    <!-- MODAL OVERLAY: DELETE -->
+    <div id="delete-modal" class="fixed inset-0 z-50 hidden">
+    <!-- Backdrop -->
+    <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity opacity-0" id="delete-modal-backdrop" onclick="closeDeleteModal()"></div>
+    
+    <!-- Modal Content -->
+    <div class="absolute inset-0 flex items-center justify-center p-4 pointer-events-none">
+        <div id="delete-modal-panel" class="bg-white w-full max-w-sm rounded-[2rem] shadow-2xl transform scale-95 opacity-0 transition-all duration-300 pointer-events-auto overflow-hidden">
+            
+            <div class="p-8 text-center">
+                <!-- Warning Icon -->
+                <div class="w-16 h-16 bg-rose-50 rounded-full flex items-center justify-center mx-auto mb-5 text-rose-500 shadow-sm">
+                    <i data-lucide="alert-triangle" class="w-8 h-8"></i>
+                </div>
+                
+                <h3 class="text-2xl font-display font-bold text-slate-800 mb-2">Supprimer ?</h3>
+                <p class="text-slate-500 mb-8 text-sm leading-relaxed">Êtes-vous sûr de vouloir retirer cet animal de l'encyclopédie ? Cette action est irréversible.</p>
+                
+                <div class="flex gap-3">
+                    <button onclick="closeDeleteModal()" class="flex-1 py-3.5 rounded-xl font-bold text-slate-600 hover:bg-slate-50 border border-transparent hover:border-slate-200 transition-all">
+                        Annuler
+                    </button>
+                    <button id="confirm_delete" class="flex-1 bg-rose-500 text-white py-3.5 rounded-xl font-bold hover:bg-rose-600 shadow-lg shadow-rose-200 hover:-translate-y-0.5 transition-all">
+                        Supprimer
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 
     <!-- JAVASCRIPT -->
     <script>
@@ -685,6 +716,36 @@
                 editmodalpanel.classList.add('scale-95', 'opacity-0');
                 editmodalpanel.classList.remove('scale-100', 'opacity-100');
             }, 10);
+        }
+
+        // delete modal
+        const confirm_delete = document.getElementById("confirm_delete");
+        const delete_modal_backdrop = document.getElementById("delete-modal-backdrop");
+        const delete_modal = document.getElementById("delete-modal");
+        const delete_panel_modal = document.getElementById("delete-modal-panel");
+        function openDeleteModal(id){
+            console.log(id);
+              delete_modal.classList.remove('hidden');
+            setTimeout(() => {
+                delete_modal_backdrop.classList.remove('opacity-0');
+                delete_panel_modal.classList.remove('scale-95', 'opacity-0');
+                delete_panel_modal.classList.add('scale-100', 'opacity-100');
+            }, 10);
+
+            confirm_delete.addEventListener("click",function(){
+                window.location = `http://localhost/zoo-Encyclopedie/php/animals.php?id=${id}`
+            })
+        }
+
+        function closeDeleteModal(){
+              delete_modal.classList.add('hidden');
+            setTimeout(() => {
+                delete_modal_backdrop.classList.add('opacity-0');
+                delete_panel_modal.classList.add('scale-95', 'opacity-0');
+                delete_panel_modal.classList.remove('scale-100', 'opacity-100');
+            }, 10);
+
+            
         }
 
     </script>
