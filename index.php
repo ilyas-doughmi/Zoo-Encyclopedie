@@ -390,61 +390,50 @@ include("php/habitat.php");
                             <h2 class="text-3xl font-display font-bold text-slate-800">Zones & Habitats</h2>
                             <p class="text-slate-500 mt-1">Gestion des environnements du zoo.</p>
                         </div>
-                        <button class="bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 px-5 py-2.5 rounded-xl font-medium transition-all flex items-center gap-2">
-                            <i data-lucide="settings-2" class="w-4 h-4"></i> Configurer
-                        </button>
+
                     </div>
-
                     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                        <!-- Habitat Card 1 -->
-                        <div class="group relative h-80 rounded-[2rem] overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500">
-                            <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=800" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <?php
+                        foreach ($habitat as $h) {
+                            $id_hab = $h['id_hab'];
+                            $count_query = mysqli_query($conn, "SELECT COUNT(*) as total FROM animal WHERE habitat_id = $id_hab");
+                            $count_data = mysqli_fetch_assoc($count_query);
+                            $animal_count = $count_data['total'];
+                        ?>
+                            <div class="group relative h-80 rounded-[2rem] overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500 bg-slate-800">
 
-                            <div class="absolute top-4 right-4 bg-white/20 backdrop-blur-md border border-white/30 px-3 py-1 rounded-full text-xs font-bold text-white">
-                                5 Espèces
-                            </div>
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
 
-                            <div class="absolute bottom-0 left-0 p-8 w-full transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                                <div class="w-12 h-1 bg-amber-400 mb-4"></div>
-                                <h3 class="text-3xl font-display font-bold text-white mb-2">La Savane</h3>
-                                <p class="text-slate-200 text-sm line-clamp-2 mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                                    Plaines arides et chaudes. Zone principale pour les grands mammifères.
-                                </p>
-                                <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200">
-                                    <button class="bg-white text-slate-900 px-4 py-2 rounded-lg text-xs font-bold hover:bg-amber-50">Modifier</button>
+                                <div class="absolute top-4 right-4 bg-white/10 backdrop-blur-md border border-white/20 px-3 py-1 rounded-full text-xs font-bold text-white">
+                                    <?= $animal_count ?> Espèces
+                                </div>
+
+                                <div class="absolute bottom-0 left-0 p-8 w-full transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                                    <div class="w-12 h-1 bg-zoo-500 mb-4"></div>
+                                    <h3 class="text-3xl font-display font-bold text-white mb-2"><?= $h['name_hab'] ?></h3>
+                                    <p class="text-slate-300 text-sm line-clamp-2 mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                                        <?= $h['desc_hab'] ?>
+                                    </p>
+
+                                    <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200">
+                                        <button class="bg-white text-slate-900 px-4 py-2 rounded-lg text-xs font-bold hover:bg-zoo-50">
+                                            Modifier
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        <?php } ?>
 
-                        <!-- Habitat Card 2 -->
-                        <div class="group relative h-80 rounded-[2rem] overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500">
-                            <img src="https://images.unsplash.com/photo-1535941339077-2dd1c7963098?auto=format&fit=crop&q=80&w=800" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-
-                            <div class="absolute top-4 right-4 bg-white/20 backdrop-blur-md border border-white/30 px-3 py-1 rounded-full text-xs font-bold text-white">
-                                4 Espèces
-                            </div>
-
-                            <div class="absolute bottom-0 left-0 p-8 w-full transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                                <div class="w-12 h-1 bg-zoo-500 mb-4"></div>
-                                <h3 class="text-3xl font-display font-bold text-white mb-2">La Jungle</h3>
-                                <p class="text-slate-200 text-sm line-clamp-2 mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                                    Forêt tropicale dense. Zone humide pour les primates et oiseaux.
-                                </p>
-                                <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200">
-                                    <button class="bg-white text-slate-900 px-4 py-2 rounded-lg text-xs font-bold hover:bg-zoo-50">Modifier</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- New Habitat -->
                         <button class="h-80 rounded-[2rem] border-3 border-dashed border-slate-200 hover:border-zoo-400 bg-slate-50 hover:bg-zoo-50 transition-all group flex flex-col items-center justify-center gap-4">
                             <div class="w-16 h-16 rounded-full bg-white shadow-sm flex items-center justify-center group-hover:scale-110 transition-transform">
                                 <i data-lucide="plus" class="w-8 h-8 text-slate-400 group-hover:text-zoo-600"></i>
                             </div>
                             <span class="font-bold text-slate-400 group-hover:text-zoo-700">Créer une Zone</span>
                         </button>
+                    </div>
+
+
+
                     </div>
                 </div>
 
