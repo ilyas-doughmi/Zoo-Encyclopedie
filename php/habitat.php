@@ -19,4 +19,22 @@
     }
     }
 
+
+     $name = "";
+
+    function habitat_name($id){
+        global $conn;
+       
+        $query_name = "SELECT name_hab FROM habitat WHERE id_hab = " . $id;
+
+        if(!$result = mysqli_query($conn,$query_name)){
+            echo "problem";
+        }
+        else{
+            $name = mysqli_fetch_assoc($result);
+        }
+        return $name["name_hab"];
+    }
+    
+
 ?>
