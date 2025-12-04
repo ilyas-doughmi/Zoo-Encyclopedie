@@ -424,21 +424,18 @@ include("php/habitat.php");
                             </div>
                         <?php } ?>
 
-                        <button class="h-80 rounded-[2rem] border-3 border-dashed border-slate-200 hover:border-zoo-400 bg-slate-50 hover:bg-zoo-50 transition-all group flex flex-col items-center justify-center gap-4">
+                        <button onclick="openHabitatModal()" class="h-80 rounded-[2rem] border-3 border-dashed border-slate-200 hover:border-zoo-400 bg-slate-50 hover:bg-zoo-50 transition-all group flex flex-col items-center justify-center gap-4">
                             <div class="w-16 h-16 rounded-full bg-white shadow-sm flex items-center justify-center group-hover:scale-110 transition-transform">
                                 <i data-lucide="plus" class="w-8 h-8 text-slate-400 group-hover:text-zoo-600"></i>
                             </div>
                             <span class="font-bold text-slate-400 group-hover:text-zoo-700">Créer une Zone</span>
                         </button>
                     </div>
-
-
-
-                    </div>
                 </div>
-
             </div>
-        </main>
+
+    </div>
+    </main>
     </div>
 
     <!-- MODAL OVERLAY -->
@@ -623,42 +620,42 @@ include("php/habitat.php");
     </div>
     <!-- MODAL  OVERLAY: ADD NEW ZONE -->
     <div id="add-habitat-modal" class="fixed inset-0 z-50 hidden">
-    <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity opacity-0" id="habitat-modal-backdrop" onclick="closeHabitatModal()"></div>
+        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity opacity-0" id="habitat-modal-backdrop" onclick="closeHabitatModal()"></div>
 
-    <div class="absolute inset-0 flex items-center justify-center p-4 pointer-events-none">
-        <div id="habitat-modal-panel" class="bg-white w-full max-w-lg rounded-3xl shadow-2xl transform scale-95 opacity-0 transition-all duration-300 pointer-events-auto overflow-hidden">
+        <div class="absolute inset-0 flex items-center justify-center p-4 pointer-events-none">
+            <div id="habitat-modal-panel" class="bg-white w-full max-w-lg rounded-3xl shadow-2xl transform scale-95 opacity-0 transition-all duration-300 pointer-events-auto overflow-hidden">
 
-            <div class="bg-slate-50 px-8 py-6 border-b border-slate-100 flex justify-between items-center">
-                <div>
-                    <h3 class="text-xl font-display font-bold text-slate-800">Ajouter un Habitat</h3>
-                    <p class="text-sm text-slate-500">Créez une nouvelle zone pour le zoo.</p>
+                <div class="bg-slate-50 px-8 py-6 border-b border-slate-100 flex justify-between items-center">
+                    <div>
+                        <h3 class="text-xl font-display font-bold text-slate-800">Ajouter un Habitat</h3>
+                        <p class="text-sm text-slate-500">Créez une nouvelle zone pour le zoo.</p>
+                    </div>
+                    <button onclick="closeHabitatModal()" class="w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-400 hover:text-rose-500 hover:border-rose-200 transition-colors">
+                        <i data-lucide="x" class="w-4 h-4"></i>
+                    </button>
                 </div>
-                <button onclick="closeHabitatModal()" class="w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-400 hover:text-rose-500 hover:border-rose-200 transition-colors">
-                    <i data-lucide="x" class="w-4 h-4"></i>
-                </button>
+
+                <form class="p-8 space-y-6" method="GET" action="php/habitat.php">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-2">Nom de l'habitat</label>
+                            <input required type="text" name="name_hab" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 font-medium focus:ring-2 focus:ring-zoo-500 focus:border-transparent outline-none transition-all placeholder:text-slate-400" placeholder="Ex: La Grande Savane">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-2">Description</label>
+                            <textarea required name="desc_hab" rows="4" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 font-medium focus:ring-2 focus:ring-zoo-500 focus:border-transparent outline-none transition-all placeholder:text-slate-400 resize-none" placeholder="Décrivez l'environnement..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 flex gap-3">
+                        <button type="button" onclick="closeHabitatModal()" class="flex-1 py-3.5 rounded-xl font-bold text-slate-600 hover:bg-slate-50 border border-transparent hover:border-slate-200 transition-all">Annuler</button>
+                        <button type="submit"  name="add_habitat" class="flex-1 bg-zoo-600 text-white py-3.5 rounded-xl font-bold hover:bg-zoo-700 shadow-lg shadow-zoo-200 hover:-translate-y-0.5 transition-all">Créer la Zone</button>
+                    </div>
+                </form>
             </div>
-
-            <form class="p-8 space-y-6" method="POST" action="php/habitat.php">
-                <div class="space-y-4">
-                    <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-2">Nom de l'habitat</label>
-                        <input type="text" name="name_hab" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 font-medium focus:ring-2 focus:ring-zoo-500 focus:border-transparent outline-none transition-all placeholder:text-slate-400" placeholder="Ex: La Grande Savane">
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-2">Description</label>
-                        <textarea name="desc_hab" rows="4" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 font-medium focus:ring-2 focus:ring-zoo-500 focus:border-transparent outline-none transition-all placeholder:text-slate-400 resize-none" placeholder="Décrivez l'environnement..."></textarea>
-                    </div>
-                </div>
-
-                <div class="pt-4 flex gap-3">
-                    <button type="button" onclick="closeHabitatModal()" class="flex-1 py-3.5 rounded-xl font-bold text-slate-600 hover:bg-slate-50 border border-transparent hover:border-slate-200 transition-all">Annuler</button>
-                    <button type="submit" name="add_habitat" class="flex-1 bg-zoo-600 text-white py-3.5 rounded-xl font-bold hover:bg-zoo-700 shadow-lg shadow-zoo-200 hover:-translate-y-0.5 transition-all">Créer la Zone</button>
-                </div>
-            </form>
         </div>
     </div>
-</div>
 
     <!-- JAVASCRIPT -->
     <script>
@@ -823,6 +820,32 @@ include("php/habitat.php");
                 window.location.href = `index.php`;
             }
         })
+
+
+        // modal for add new zone
+
+        const habitatModal = document.getElementById('add-habitat-modal');
+        const habitatBackdrop = document.getElementById('habitat-modal-backdrop');
+        const habitatPanel = document.getElementById('habitat-modal-panel');
+
+        function openHabitatModal() {
+            habitatModal.classList.remove('hidden');
+            setTimeout(() => {
+                habitatBackdrop.classList.remove('opacity-0');
+                habitatPanel.classList.remove('scale-95', 'opacity-0');
+                habitatPanel.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function closeHabitatModal() {
+            habitatBackdrop.classList.add('opacity-0');
+            habitatPanel.classList.remove('scale-100', 'opacity-100');
+            habitatPanel.classList.add('scale-95', 'opacity-0');
+
+            setTimeout(() => {
+                habitatModal.classList.add('hidden');
+            }, 300);
+        }
     </script>
 </body>
 
