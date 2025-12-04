@@ -12,16 +12,12 @@ include("php/habitat.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zoo Encyclopédie - Administration</title>
 
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- Tailwind Config for Custom Colors/Fonts -->
     <script>
         tailwind.config = {
             theme: {
@@ -123,9 +119,7 @@ include("php/habitat.php");
 
 <body class="text-slate-800 h-screen flex overflow-hidden selection:bg-zoo-100 selection:text-zoo-900">
 
-    <!-- SIDEBAR -->
     <aside class="w-72 bg-white border-r border-slate-200 hidden md:flex flex-col z-30 shadow-[4px_0_24px_rgba(0,0,0,0.02)]">
-        <!-- Logo Area -->
         <div class="h-20 flex items-center px-8 border-b border-slate-50">
             <div class="flex items-center gap-3">
                 <div class="w-10 h-10 bg-zoo-500 rounded-xl flex items-center justify-center text-white shadow-lg shadow-zoo-500/30 transform rotate-3">
@@ -138,7 +132,6 @@ include("php/habitat.php");
             </div>
         </div>
 
-        <!-- Navigation -->
         <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
             <div class="px-4 mb-2">
                 <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Menu Principal</p>
@@ -166,10 +159,8 @@ include("php/habitat.php");
 
     </aside>
 
-    <!-- MAIN CONTENT WRAPPER -->
     <div class="flex-1 flex flex-col h-screen overflow-hidden relative">
 
-        <!-- Top Mobile Header -->
         <header class="h-16 bg-white border-b border-slate-200 flex md:hidden items-center justify-between px-4 z-40 sticky top-0">
             <div class="flex items-center gap-2">
                 <div class="bg-zoo-500 p-1.5 rounded-lg text-white"><i data-lucide="paw-print" class="w-5 h-5"></i></div>
@@ -178,18 +169,14 @@ include("php/habitat.php");
             <button class="p-2 text-slate-500 bg-slate-50 rounded-lg hover:bg-slate-100"><i data-lucide="menu" class="w-6 h-6"></i></button>
         </header>
 
-        <!-- MAIN SCROLLABLE AREA -->
         <main class="flex-1 overflow-y-auto bg-[#F8FAFC] p-4 md:p-8 scroll-smooth relative">
 
-            <!-- Background Decorations -->
             <div class="fixed top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-zoo-100 rounded-full blur-3xl opacity-50 pointer-events-none z-0"></div>
             <div class="fixed bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 bg-blue-100 rounded-full blur-3xl opacity-50 pointer-events-none z-0"></div>
 
             <div class="relative z-10 max-w-7xl mx-auto space-y-8 pb-12">
 
-                <!-- DASHBOARD VIEW -->
                 <div id="view-dashboard" class="space-y-8 fade-in">
-                    <!-- Header Section -->
                     <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
                         <div>
                             <h2 class="text-3xl font-display font-bold text-slate-800">Tableau de Bord</h2>
@@ -212,9 +199,7 @@ include("php/habitat.php");
                         </div>
                     </div>
 
-                    <!-- KPI Cards -->
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <!-- KPI 1 -->
                         <div class="bg-white p-6 rounded-3xl shadow-[0_2px_20px_rgba(0,0,0,0.04)] border border-slate-100 relative overflow-hidden group hover-lift">
                             <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
                                 <i data-lucide="cat" class="w-24 h-24 text-zoo-600 transform rotate-12 translate-x-4 -translate-y-4"></i>
@@ -231,7 +216,6 @@ include("php/habitat.php");
                             </div>
                         </div>
 
-                        <!-- KPI 2 -->
                         <div class="bg-white p-6 rounded-3xl shadow-[0_2px_20px_rgba(0,0,0,0.04)] border border-slate-100 relative overflow-hidden group hover-lift">
                             <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
                                 <i data-lucide="map" class="w-24 h-24 text-blue-600 transform rotate-12 translate-x-4 -translate-y-4"></i>
@@ -247,7 +231,6 @@ include("php/habitat.php");
                             </div>
                         </div>
 
-                        <!-- KPI 3 -->
                         <div class="bg-white p-6 rounded-3xl shadow-[0_2px_20px_rgba(0,0,0,0.04)] border border-slate-100 relative overflow-hidden group hover-lift">
                             <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
                                 <i data-lucide="utensils" class="w-24 h-24 text-amber-600 transform rotate-12 translate-x-4 -translate-y-4"></i>
@@ -267,9 +250,7 @@ include("php/habitat.php");
                         </div>
                     </div>
 
-                    <!-- Visual Widgets -->
                     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                        <!-- Chart 1 -->
                         <div class="lg:col-span-2 bg-white p-6 rounded-3xl shadow-sm border border-slate-100">
                             <div class="flex items-center justify-between mb-6">
                                 <h3 class="font-bold text-lg text-slate-800">Répartition par Habitat</h3>
@@ -296,7 +277,6 @@ include("php/habitat.php");
                             </div>
                         </div>
 
-                        <!-- Quick Actions / Mini Widget -->
                         <div class="bg-zoo-900 text-white p-6 rounded-3xl shadow-xl shadow-zoo-900/20 relative overflow-hidden flex flex-col justify-between">
                             <div class="absolute top-0 right-0 w-32 h-32 bg-zoo-500 rounded-full blur-3xl opacity-20 -mr-10 -mt-10"></div>
 
@@ -315,9 +295,7 @@ include("php/habitat.php");
                     </div>
                 </div>
 
-                <!-- ANIMALS VIEW -->
                 <div id="view-animals" class="space-y-8 hidden fade-in">
-                    <!-- Filters & Controls -->
                     <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 flex flex-col md:flex-row gap-4 justify-between items-center sticky top-0 z-20">
                         <h2 class="text-2xl font-display font-bold text-slate-800 pl-2">Encyclopédie</h2>
 
@@ -339,7 +317,6 @@ include("php/habitat.php");
                     </div>
 
 
-                    <!-- Animal Grid -->
                     <div id="animal-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                         <?php while ($row = mysqli_fetch_assoc($query_for_all)) { ?>
                             <div id="<?= $row["id"] ?>" class="bg-white rounded-3xl p-3 shadow-sm border border-slate-100 hover:border-zoo-200 transition-all duration-300 group fade-in hover:-translate-y-1" style="animation-delay: ${index * 50}ms">
@@ -356,7 +333,6 @@ include("php/habitat.php");
                                         <button onclick="openEditModal(<?= $row["id"] ?>)" class="w-9 h-9 bg-white text-slate-700 rounded-full flex items-center justify-center hover:bg-zoo-500 hover:text-white transition-colors shadow-lg transform hover:scale-110">
                                             <i data-lucide="pencil" class="w-4 h-4"></i>
                                         </button>
-                                        <!-- <a href="http://localhost/zoo-Encyclopedie/php/animals.php?id=<?= $row["id"] ?>"> -->
                                         <button onclick="openDeleteModal(<?= $row["id"] ?>)" class="w-9 h-9 bg-white text-slate-700 rounded-full flex items-center justify-center hover:bg-rose-500 hover:text-white transition-colors shadow-lg transform hover:scale-110">
                                             <i data-lucide="trash-2" class="w-4 h-4"></i>
                                         </button>
@@ -383,7 +359,6 @@ include("php/habitat.php");
                     </div>
                 </div>
 
-                <!-- HABITATS VIEW -->
                 <div id="view-habitats" class="space-y-8 hidden fade-in">
                     <div class="flex justify-between items-end">
                         <div>
@@ -416,8 +391,11 @@ include("php/habitat.php");
                                     </p>
 
                                     <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200">
-                                        <button class="bg-white text-slate-900 px-4 py-2 rounded-lg text-xs font-bold hover:bg-zoo-50">
+                                        <button onclick="openEditHabitatModal(<?= $h['id_hab'] ?>)" class="bg-white text-slate-900 px-4 py-2 rounded-lg text-xs font-bold hover:bg-zoo-50">
                                             Modifier
+                                        </button>
+                                         <button onclick="openDeleteHabitatModal(<?= $h['id_hab'] ?>)" class="bg-red-500 text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-red-700">
+                                            Supprimer
                                         </button>
                                     </div>
                                 </div>
@@ -438,16 +416,12 @@ include("php/habitat.php");
     </main>
     </div>
 
-    <!-- MODAL OVERLAY -->
     <div id="add-modal" class="fixed inset-0 z-50 hidden">
-        <!-- Backdrop -->
         <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity opacity-0" id="modal-backdrop" onclick="closeModal()"></div>
 
-        <!-- Modal Content -->
         <div class="absolute inset-0 flex items-center justify-center p-4 pointer-events-none">
             <div id="modal-panel" class="bg-white w-full max-w-lg rounded-3xl shadow-2xl transform scale-95 opacity-0 transition-all duration-300 pointer-events-auto overflow-hidden">
 
-                <!-- Modal Header -->
                 <div class="bg-slate-50 px-8 py-6 border-b border-slate-100 flex justify-between items-center">
                     <div>
                         <h3 class="text-xl font-display font-bold text-slate-800">Ajouter un Animal</h3>
@@ -458,7 +432,6 @@ include("php/habitat.php");
                     </button>
                 </div>
 
-                <!-- Form -->
                 <form class="p-8 space-y-6" method="POST" action="php/animals.php">
                     <div class="space-y-4">
                         <div>
@@ -512,16 +485,12 @@ include("php/habitat.php");
         </div>
     </div>
 
-    <!-- MODAL OVERLAY: EDIT -->
     <div id="edit-modal" class="fixed inset-0 z-50 hidden">
-        <!-- Backdrop -->
         <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity opacity-0" id="edit-modal-backdrop" onclick="closeEditModal()"></div>
 
-        <!-- Modal Content -->
         <div class="absolute inset-0 flex items-center justify-center p-4 pointer-events-none">
             <div id="edit-modal-panel" class="bg-white w-full max-w-lg rounded-3xl shadow-2xl transform scale-95 opacity-0 transition-all duration-300 pointer-events-auto overflow-hidden">
 
-                <!-- Modal Header -->
                 <div class="bg-slate-50 px-8 py-6 border-b border-slate-100 flex justify-between items-center">
                     <div>
                         <h3 class="text-xl font-display font-bold text-slate-800">Modifier l'Animal</h3>
@@ -532,7 +501,6 @@ include("php/habitat.php");
                     </button>
                 </div>
 
-                <!-- Form -->
                 <form class="p-8 space-y-6" method="GET" action="php/animals.php">
                     <input type="hidden" id="edit-id">
                     <div class="space-y-4">
@@ -587,17 +555,13 @@ include("php/habitat.php");
             </div>
         </div>
     </div>
-    <!-- MODAL OVERLAY: DELETE -->
     <div id="delete-modal" class="fixed inset-0 z-50 hidden">
-        <!-- Backdrop -->
         <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity opacity-0" id="delete-modal-backdrop" onclick="closeDeleteModal()"></div>
 
-        <!-- Modal Content -->
         <div class="absolute inset-0 flex items-center justify-center p-4 pointer-events-none">
             <div id="delete-modal-panel" class="bg-white w-full max-w-sm rounded-[2rem] shadow-2xl transform scale-95 opacity-0 transition-all duration-300 pointer-events-auto overflow-hidden">
 
                 <div class="p-8 text-center">
-                    <!-- Warning Icon -->
                     <div class="w-16 h-16 bg-rose-50 rounded-full flex items-center justify-center mx-auto mb-5 text-rose-500 shadow-sm">
                         <i data-lucide="alert-triangle" class="w-8 h-8"></i>
                     </div>
@@ -618,7 +582,36 @@ include("php/habitat.php");
             </div>
         </div>
     </div>
-    <!-- MODAL  OVERLAY: ADD NEW ZONE -->
+
+    <div id="delete-habitat-modal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity opacity-0" id="delete-habitat-modal-backdrop" onclick="closeDeleteHabitatModal()"></div>
+
+        <div class="absolute inset-0 flex items-center justify-center p-4 pointer-events-none">
+            <div id="delete-habitat-modal-panel" class="bg-white w-full max-w-sm rounded-[2rem] shadow-2xl transform scale-95 opacity-0 transition-all duration-300 pointer-events-auto overflow-hidden">
+
+                <div class="p-8 text-center">
+                    <div class="w-16 h-16 bg-rose-50 rounded-full flex items-center justify-center mx-auto mb-5 text-rose-500 shadow-sm">
+                        <i data-lucide="alert-triangle" class="w-8 h-8"></i>
+                    </div>
+
+                    <h3 class="text-2xl font-display font-bold text-slate-800 mb-2">Supprimer l'Habitat ?</h3>
+                    <p class="text-slate-500 mb-8 text-sm leading-relaxed">Êtes-vous sûr de vouloir retirer cet habitat ? Cette action est irréversible.</p>
+
+                    <div class="flex gap-3">
+                        <button onclick="closeDeleteHabitatModal()" class="flex-1 py-3.5 rounded-xl font-bold text-slate-600 hover:bg-slate-50 border border-transparent hover:border-slate-200 transition-all">
+                            Annuler
+                        </button>
+                        <button id="confirm_delete_habitat" class="flex-1 bg-rose-500 text-white py-3.5 rounded-xl font-bold hover:bg-rose-600 shadow-lg shadow-rose-200 hover:-translate-y-0.5 transition-all">
+                            Supprimer
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
     <div id="add-habitat-modal" class="fixed inset-0 z-50 hidden">
         <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity opacity-0" id="habitat-modal-backdrop" onclick="closeHabitatModal()"></div>
 
@@ -657,7 +650,45 @@ include("php/habitat.php");
         </div>
     </div>
 
-    <!-- JAVASCRIPT -->
+    <div id="edit-habitat-modal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity opacity-0" id="edit-habitat-modal-backdrop" onclick="closeEditHabitatModal()"></div>
+
+        <div class="absolute inset-0 flex items-center justify-center p-4 pointer-events-none">
+            <div id="edit-habitat-modal-panel" class="bg-white w-full max-w-lg rounded-3xl shadow-2xl transform scale-95 opacity-0 transition-all duration-300 pointer-events-auto overflow-hidden">
+
+                <div class="bg-slate-50 px-8 py-6 border-b border-slate-100 flex justify-between items-center">
+                    <div>
+                        <h3 class="text-xl font-display font-bold text-slate-800">Modifier l'Habitat</h3>
+                        <p class="text-sm text-slate-500">Mettre à jour la zone.</p>
+                    </div>
+                    <button onclick="closeEditHabitatModal()" class="w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-400 hover:text-rose-500 hover:border-rose-200 transition-colors">
+                        <i data-lucide="x" class="w-4 h-4"></i>
+                    </button>
+                </div>
+
+                <form class="p-8 space-y-6" method="GET" action="php/habitat.php">
+                     <input type="hidden" id="edit-id-hab" name="id_edit_hab">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-2">Nom de l'habitat</label>
+                            <input required type="text" id="edit-name-hab" name="edit_name_hab" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 font-medium focus:ring-2 focus:ring-zoo-500 focus:border-transparent outline-none transition-all placeholder:text-slate-400">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-2">Description</label>
+                            <textarea required id="edit-desc-hab" name="edit_desc_hab" rows="4" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 font-medium focus:ring-2 focus:ring-zoo-500 focus:border-transparent outline-none transition-all placeholder:text-slate-400 resize-none"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 flex gap-3">
+                        <button type="button" onclick="closeEditHabitatModal()" class="flex-1 py-3.5 rounded-xl font-bold text-slate-600 hover:bg-slate-50 border border-transparent hover:border-slate-200 transition-all">Annuler</button>
+                        <button type="submit" class="flex-1 bg-zoo-600 text-white py-3.5 rounded-xl font-bold hover:bg-zoo-700 shadow-lg shadow-zoo-200 hover:-translate-y-0.5 transition-all">Sauvegarder</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Init Icons
         lucide.createIcons();
@@ -750,12 +781,6 @@ include("php/habitat.php");
 
                 })
                 .catch(error => console.log("eror"));
-
-
-
-
-
-
         }
 
 
@@ -846,6 +871,75 @@ include("php/habitat.php");
                 habitatModal.classList.add('hidden');
             }, 300);
         }
+
+        // delete habitat modal
+        const confirm_delete_habitat = document.getElementById("confirm_delete_habitat");
+        const delete_habitat_modal_backdrop = document.getElementById("delete-habitat-modal-backdrop");
+        const delete_habitat_modal = document.getElementById("delete-habitat-modal");
+        const delete_habitat_panel_modal = document.getElementById("delete-habitat-modal-panel");
+
+        function openDeleteHabitatModal(id) {
+            delete_habitat_modal.classList.remove('hidden');
+            setTimeout(() => {
+                delete_habitat_modal_backdrop.classList.remove('opacity-0');
+                delete_habitat_panel_modal.classList.remove('scale-95', 'opacity-0');
+                delete_habitat_panel_modal.classList.add('scale-100', 'opacity-100');
+            }, 10);
+
+            confirm_delete_habitat.addEventListener("click", function() {
+                window.location = `php/habitat.php?del_id=${id}`
+            })
+        }
+
+        function closeDeleteHabitatModal() {
+            delete_habitat_modal.classList.add('hidden');
+            setTimeout(() => {
+                delete_habitat_modal_backdrop.classList.add('opacity-0');
+                delete_habitat_panel_modal.classList.add('scale-95', 'opacity-0');
+                delete_habitat_panel_modal.classList.remove('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+         // edit habitat modal
+        const edit_habitat_modal_backdrop = document.getElementById("edit-habitat-modal-backdrop");
+        const edit_habitat_modal_panel = document.getElementById("edit-habitat-modal-panel");
+        const edit_habitat_modal = document.getElementById("edit-habitat-modal");
+        
+        // edit habitat inputs
+        const edit_id_hab = document.getElementById("edit-id-hab");
+        const edit_name_hab = document.getElementById("edit-name-hab");
+        const edit_desc_hab = document.getElementById("edit-desc-hab");
+
+        function openEditHabitatModal(id) {
+            // showing modal
+            edit_habitat_modal.classList.remove('hidden');
+            setTimeout(() => {
+                edit_habitat_modal_backdrop.classList.remove('opacity-0');
+                edit_habitat_modal_panel.classList.remove('scale-95', 'opacity-0');
+                edit_habitat_modal_panel.classList.add('scale-100', 'opacity-100');
+            }, 10);
+
+            // getting data and show it in input
+
+            fetch(`php/habitat.php?data_id=${id}`)
+                .then(response => response.json())
+                .then(data => {
+                    edit_id_hab.value = data.id_hab;
+                    edit_name_hab.value = data.name_hab;
+                    edit_desc_hab.value = data.desc_hab;
+                })
+                .catch(error => console.log("eror"));
+        }
+
+        function closeEditHabitatModal() {
+            edit_habitat_modal.classList.add('hidden');
+            setTimeout(() => {
+                edit_habitat_modal_backdrop.classList.add('opacity-0');
+                edit_habitat_modal_panel.classList.add('scale-95', 'opacity-0');
+                edit_habitat_modal_panel.classList.remove('scale-100', 'opacity-100');
+            }, 10);
+        }
+
     </script>
 </body>
 
