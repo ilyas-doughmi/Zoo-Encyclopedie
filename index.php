@@ -343,7 +343,7 @@
                             </div>
                             <div class="flex justify-between items-center text-xs text-slate-400 font-medium border-t border-slate-50 pt-2 mt-2">
                                 <span></span>
-                                <span class="group-hover:text-zoo-600 transition-colors"><?= $row["habitat_id"] ?></span>
+                                <span class="group-hover:text-zoo-600 transition-colors"><?= habitat_name($row["habitat_id"])?></span>
                             </div>
                         </div>
                     </div>
