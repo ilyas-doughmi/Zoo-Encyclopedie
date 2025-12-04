@@ -276,33 +276,23 @@ include("php/habitat.php");
                                 <button class="text-slate-400 hover:text-slate-600"><i data-lucide="more-horizontal" class="w-5 h-5"></i></button>
                             </div>
                             <div class="space-y-5">
-                                <div class="space-y-2">
-                                    <div class="flex justify-between text-sm font-medium">
-                                        <span class="flex items-center gap-2 text-slate-600"><span class="w-3 h-3 rounded-full bg-amber-400"></span> Savane</span>
-                                        <span class="text-slate-800">45%</span>
+
+                                <?php foreach ($habitat as $h) {
+                                    global $conn;
+                                    $id_habb = $h["id_hab"];
+                                    $count_habit = "SELECT COUNT(*) as count FROM animal WHERE habitat_id = " . $id_habb;
+                                    $count_query_hab = mysqli_query($conn, $count_habit);
+                                    $row_count = mysqli_fetch_assoc($count_query_hab);
+                                    $row_count = $row_count["count"];
+                                ?>
+                                    <div class="space-y-2">
+                                        <div class="flex justify-between text-sm font-medium">
+                                            <span class="flex items-center gap-2 text-slate-600"><span class="w-3 h-3 rounded-full bg-blue-500"></span> <?= $h["name_hab"] ?></span>
+                                            <span class="text-slate-800"><?= $row_count ?></span>
+                                        </div>
                                     </div>
-                                    <div class="h-3 w-full bg-slate-100 rounded-full overflow-hidden">
-                                        <div class="h-full bg-amber-400 rounded-full" style="width: 45%"></div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <div class="flex justify-between text-sm font-medium">
-                                        <span class="flex items-center gap-2 text-slate-600"><span class="w-3 h-3 rounded-full bg-zoo-500"></span> Jungle</span>
-                                        <span class="text-slate-800">35%</span>
-                                    </div>
-                                    <div class="h-3 w-full bg-slate-100 rounded-full overflow-hidden">
-                                        <div class="h-full bg-zoo-500 rounded-full" style="width: 35%"></div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <div class="flex justify-between text-sm font-medium">
-                                        <span class="flex items-center gap-2 text-slate-600"><span class="w-3 h-3 rounded-full bg-blue-500"></span> Océan</span>
-                                        <span class="text-slate-800">20%</span>
-                                    </div>
-                                    <div class="h-3 w-full bg-slate-100 rounded-full overflow-hidden">
-                                        <div class="h-full bg-blue-500 rounded-full" style="width: 20%"></div>
-                                    </div>
-                                </div>
+
+                                <?php } ?>
                             </div>
                         </div>
 
@@ -338,7 +328,7 @@ include("php/habitat.php");
                                 <option value="all">All Animals</option>
                                 <?php foreach ($habitat as $h) { ?>
                                     <option value="<?= $h['id_hab'] ?>" <?= (isset($_GET['filter']) && $_GET['filter'] == $h['id_hab']) ? 'selected' : '' ?>><?= $h["name_hab"] ?></option>
-                                    
+
                                 <?php } ?>
                             </select>
 
@@ -800,11 +790,10 @@ include("php/habitat.php");
 
             // LINK
             const filter_value = filter_habitat.value;
-            if(filter_value != "all"){
+            if (filter_value != "all") {
                 window.location.href = `index.php?filter= ${filter_value}`;
-            }
-            else{
-                 window.location.href = `index.php`;
+            } else {
+                window.location.href = `index.php`;
             }
         })
     </script>
