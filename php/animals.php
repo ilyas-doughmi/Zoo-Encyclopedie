@@ -7,9 +7,20 @@ include("connexion.php");
 
 // total animals
 if ($conn) {
+    
+    if(isset($_GET["filter"]) && $_GET["filter"] != "all"){
+        $data_wanted = $_GET["filter"];
+        $query_total = " SELECT * FROM animal WHERE habitat_id = ". $data_wanted; 
+    }
+    else{
     $query_total = "SELECT * FROM animal";
+
+    }
+    $query_for_total = "SELECT * FROM animal";
+
+    
     $query_for_all = mysqli_query($conn, $query_total);
-    $total = mysqli_query($conn, $query_total);
+    $total = mysqli_query($conn, $query_for_total);
     $total = mysqli_num_rows($total);
 
 
@@ -29,6 +40,10 @@ if ($conn) {
             exit;
         }
     }
+
+    // filter data
+
+
 }
 
 
@@ -63,7 +78,7 @@ function data_id($id)
     }
 }
 
-
+// edit an animal using the new information getting from client
 if (isset($_GET["data"])) {
     $id = $_GET['data'];
     data_id($id);
@@ -83,3 +98,10 @@ $query_edit = "UPDATE animal SET name_anim = '".$new_info["new_name"]."',habitat
             exit;
     }
 }   
+
+
+// filterage //
+
+
+
+?>
