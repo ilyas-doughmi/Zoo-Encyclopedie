@@ -35,6 +35,23 @@
         }
         return $name["name_hab"];
     }
+
+
+    // add new zone
+
+    if(isset($_GET["name_hab"])){
+        $name_hab = $_GET["name_hab"];
+        $desc_hab = $_GET["desc_hab"];
+
+        $insert_query = "INSERT INTO habitat(name_hab,desc_hab) VALUES('$name_hab','$desc_hab') ";
+
+        if(!mysqli_query($conn,$insert_query)){
+            echo "problem";
+        }
+        else{
+            header("location: ../index.php?added=success");
+        }
+    }
     
 
 ?>
