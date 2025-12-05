@@ -309,6 +309,13 @@ include("php/habitat.php");
 
                                 <?php } ?>
                             </select>
+                            
+                             <select id="filter-diet" class="px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-600 focus:outline-none focus:ring-2 focus:ring-zoo-500 cursor-pointer">
+                                <option value="all">All Diets</option>
+                                <option value="Carnivore" <?= (isset($_GET['diet']) && $_GET['diet'] == 'Carnivore') ? 'selected' : '' ?>>Carnivore</option>
+                                <option value="Herbivore" <?= (isset($_GET['diet']) && $_GET['diet'] == 'Herbivore') ? 'selected' : '' ?>>Herbivore</option>
+                                <option value="Omnivore" <?= (isset($_GET['diet']) && $_GET['diet'] == 'Omnivore') ? 'selected' : '' ?>>Omnivore</option>
+                            </select>
 
                             <button onclick="openModal()" class="bg-zoo-600 hover:bg-zoo-700 text-white w-10 h-10 rounded-xl flex items-center justify-center shadow-lg shadow-zoo-200 transition-all hover:scale-105">
                                 <i data-lucide="plus" class="w-5 h-5"></i>
@@ -841,6 +848,18 @@ include("php/habitat.php");
             const filter_value = filter_habitat.value;
             if (filter_value != "all") {
                 window.location.href = `index.php?filter= ${filter_value}`;
+            } else {
+                window.location.href = `index.php`;
+            }
+        })
+
+        const filter_diet = document.getElementById("filter-diet");
+
+        filter_diet.addEventListener("change", function() {
+           
+            const diet_value = filter_diet.value;
+            if (filter_diet.value != "all") {
+                window.location.href = `index.php?diet=${diet_value}`;
             } else {
                 window.location.href = `index.php`;
             }
