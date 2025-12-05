@@ -48,8 +48,6 @@ Zoo-Encyclopedie/
 ├── sql/                   # Database Scripts
 │   └── install.sql        # Setup script (Create DB & Tables)
 ├── index.php              # Main Application Entry Point
-├── img.php                # Image testing utility
-└── test.php               # Connection testing utility
 ````
 
 ## Database Setup
