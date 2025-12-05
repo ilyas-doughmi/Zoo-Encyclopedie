@@ -1,5 +1,3 @@
-
-
 <?php
 include("connexion.php");
 
@@ -11,6 +9,10 @@ if ($conn) {
     if(isset($_GET["filter"]) && $_GET["filter"] != "all"){
         $data_wanted = $_GET["filter"];
         $query_total = " SELECT * FROM animal WHERE habitat_id = ". $data_wanted; 
+    }
+    elseif(isset($_GET["diet"]) && $_GET["diet"] != "all"){
+        $diet_wanted = $_GET["diet"];
+        $query_total = " SELECT * FROM animal WHERE type_alimentaire = '$diet_wanted'"; 
     }
     else{
     $query_total = "SELECT * FROM animal";
